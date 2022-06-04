@@ -14,7 +14,7 @@
 <１人ではなく、誰かとパーティーを組んでゲームをしたい時>
 
 ## 設計書
-<...>
+<https://docs.google.com/spreadsheets/d/1fJMNqZn0GzIAqBx1F4mD1mJ2YpXaSUCX-El3P4YO8A0/edit?usp=sharing>
 
 ## 開発環境
 - OS：Linux(CentOS)
