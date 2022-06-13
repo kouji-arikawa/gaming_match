@@ -11,6 +11,31 @@
   </head>
 
   <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav ml-auto">
+            <% if customer_signed_in? %>
+            <li>
+              <%= link_to "マイページ", my_page_path, class: "nav-link text-light" %>
+            </li>
+            <li>
+            </li>
+            <li>
+            </li>
+            <li>
+              <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "nav-link text-light" %>
+            </li>
+            <% end %>
+          </ul>
+        </div>
+        </div>
+      </nav>
+    </header>
     <%= yield %>
   </body>
 </html>

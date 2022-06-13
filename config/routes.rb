@@ -10,6 +10,9 @@ Rails.application.routes.draw do
     sessions: 'public/sessions'
   }
 
-
+scope module: :public do
+  get 'customers/my_page' => 'customers#show', as: 'my_page'
+  resources :customers, only: [:edit, :update]
+end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
