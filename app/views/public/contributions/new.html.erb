@@ -1,0 +1,19 @@
+<main>
+  <div class="container">
+    <div class="col-md-3">
+      <p class="mt-4 text-center" style="background-color: #f0f0f0">商品新規登録</p>
+    </div>
+    <%= form_with model: @contribution, url: contributions_path do |f| %>
+    <div class="col-8 text-left">
+       <p class="font">募集ジャンル　　　　　</p>
+       <p class="font">
+        募集人数　　　　　　　<%= form_with model: @contribution do |f| %>
+          <%= f.select :recruitment_numbers, *[1...10] %>
+       </p>
+       <% end %>
+       <p class="font">募集内容　　<%= f.text_area :contribution, :size=>"30x10" %></p>
+       <span class="good"><%= f.submit '新規登録', class: "btn btn-success" %></span>
+    </div>
+  </div>
+</main>
+<% end %>

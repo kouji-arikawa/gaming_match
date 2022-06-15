@@ -13,6 +13,12 @@ Rails.application.routes.draw do
 scope module: :public do
   get 'customers/my_page' => 'customers#show', as: 'my_page'
   resources :customers, only: [:edit, :update]
+  resources :contributions, only: [:new, :create, :index, :show, :edit, :update, :destroy]
+end
+
+namespace :admin do
+  root to: 'homes#top'
+  resources :genres, only: [:index, :create, :edit, :update]
 end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

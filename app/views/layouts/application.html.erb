@@ -19,11 +19,16 @@
           </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav ml-auto">
-            <% if customer_signed_in? %>
+            <% if admin_signed_in? %>
+            <li>
+              <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link text-light" %>
+            </li>
+            <% elsif customer_signed_in? %>
             <li>
               <%= link_to "マイページ", my_page_path, class: "nav-link text-light" %>
             </li>
             <li>
+              <%= link_to "募集", new_contribution_path, class: "nav-link text-light" %>
             </li>
             <li>
             </li>
