@@ -5,7 +5,7 @@
     </div>
     <%= form_with model: @contribution, url: contributions_path do |f| %>
     <div class="col-8 text-left">
-       <p class="font">募集ジャンル　　　　　</p>
+       <p class="font">募集ジャンル　　　　　<%= f.collection_select(:genre_id, Genre.all, :id, :name) %></p>
        <p class="font">
         募集人数　　　　　　　<%= form_with model: @contribution do |f| %>
           <%= f.select :recruitment_numbers, *[1...10] %>
