@@ -6,11 +6,14 @@ class Public::ContributionsController < ApplicationController
 
   def create
     contribution = Contribution.new(contribution_params)
+    contribution.customer = current_customer
+    #byebug
     contribution.save
-    redirect_to new_contribution_path
+    redirect_to contributions_path
   end
 
   def index
+    @contributions = Contribution.all
   end
 
   def show
@@ -27,6 +30,6 @@ class Public::ContributionsController < ApplicationController
 
   private
   def contribution_params
-    params.require(:contribution).permit(:customer_id, :genre_id, :recruitment_numbers, :contribution)
+    params.require(:contribution).permit(:customer_id, :genre_id, :recruitment_numbers, :content)
   end
 end

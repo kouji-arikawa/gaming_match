@@ -11,7 +11,7 @@
           <%= f.select :recruitment_numbers, *[1...10] %>
        </p>
        <% end %>
-       <p class="font">募集内容　　<%= f.text_area :contribution, :size=>"30x10" %></p>
+       <p class="font">募集内容　　<%= f.text_area :content, :size=>"30x10" %></p>
        <span class="good"><%= f.submit '新規登録', class: "btn btn-success" %></span>
     </div>
   </div>

@@ -4,5 +4,6 @@ class Customer < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :contributions, dependent: :destroy
+  has_many :customer_contributions
+  has_many :contributions, through: :customer_contributions
 end

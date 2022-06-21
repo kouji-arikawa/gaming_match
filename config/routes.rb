@@ -14,6 +14,7 @@ scope module: :public do
   get 'customers/my_page' => 'customers#show', as: 'my_page'
   resources :customers, only: [:edit, :update]
   resources :contributions, only: [:new, :create, :index, :show, :edit, :update, :destroy]
+  resources :customer_contributions, only: [:create, :destroy]
 end
 
 namespace :admin do
