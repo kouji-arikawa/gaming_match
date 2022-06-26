@@ -11,14 +11,20 @@ Rails.application.routes.draw do
   }
 
 scope module: :public do
+  root to: 'homes#top'
+  post '/homes/guest_sign_in', to: 'homes#guest_sign_in'
   get 'customers/my_page' => 'customers#show', as: 'my_page'
   resources :customers, only: [:edit, :update]
   resources :contributions, only: [:new, :create, :index, :show, :edit, :update, :destroy]
-  resources :customer_contributions, only: [:create, :destroy]
+  resources :customer_contributions, only: [:create, :destroy] do
+    member do
+      post :change_status
+    end
+  end
 end
 
 namespace :admin do
-  root to: 'homes#top'
+  # root to: 'homes#top'
   resources :genres, only: [:index, :create, :edit, :update]
 end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

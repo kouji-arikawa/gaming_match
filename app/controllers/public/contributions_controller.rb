@@ -17,15 +17,25 @@ class Public::ContributionsController < ApplicationController
   end
 
   def show
+    @contribution = Contribution.find(params[:id])
+    @customer_contributions = @contribution.customer_contributions.where.not(status: :rejection)
   end
 
   def edit
+    @contribution = Contribution.find(params[:id])
+    current_customer == @contribution.customer
   end
 
   def update
+    @contribution = Contribution.find(params[:id])
+    @contribution.update(contribution_params)
+    redirect_to edit_contribution_path(@contribution.id)
   end
 
   def destroy
+    @contribution = Contribution.find(params[:id])
+    @contribution.destroy
+    redirect_to contributions_path
   end
 
   private

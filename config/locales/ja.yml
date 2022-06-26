@@ -1,0 +1,7 @@
+ja:
+  enums:
+    customer_contribution:
+      status:
+        request: "リクエスト"
+        approval: "承諾"
+        rejection: "拒否"

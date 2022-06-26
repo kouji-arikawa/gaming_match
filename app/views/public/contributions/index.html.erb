@@ -11,14 +11,18 @@
 　　　<p>募集内容</p>
 　　　<%= contribution.content %>
 
-　　　<% if contribution.remaking_numbers != 0  %>
-　　　    <% if contribution.customers.include?(current_customer) %>
-　　　  　  <%= link_to "参加取り消し", customer_contribution_path(contribution.id), method: :delete %>
-　　    　<% else %>
-        　   <%= link_to "募集中", customer_contributions_path(contribution_id:contribution.id), method: :post %>
-　    　　<% end %>
-　    <% else %>
-　    　　募集満員
+      <% if contribution.customer.id != current_customer.id %>
+　　　  <% if contribution.remaking_numbers != 0  %>
+    　　　    <% if contribution.customers.include?(current_customer) %>
+    　　　  　  <%= link_to "参加取り消し", customer_contribution_path(contribution.id), method: :delete %>
+    　　   　<% else %>
+             <%= link_to "募集中", customer_contributions_path(contribution_id:contribution.id), method: :post %>
+    　    　<% end %>
+    　    <% else %>
+    　    　　募集満員
+    　    <% end %>
 　    <% end %>
+
+　    <%= link_to "募集詳細", contribution_path(contribution.id), class: "btn-sm btn-primary" %>
 
 <% end %>
