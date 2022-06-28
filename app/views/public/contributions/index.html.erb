@@ -1,28 +1,55 @@
-<h4>投稿一覧</h4>
-
-<% @contributions.each do |contribution| %>
-
-　　　<p>募集ゲーム</p>
-　　　<%= contribution.genre.name %>
-
-　　　<p>募集人数</p>
-　　　<%= contribution.recruitment_numbers %>
-
-　　　<p>募集内容</p>
-　　　<%= contribution.content %>
-
-      <% if contribution.customer.id != current_customer.id %>
-　　　  <% if contribution.remaking_numbers != 0  %>
-    　　　    <% if contribution.customers.include?(current_customer) %>
-    　　　  　  <%= link_to "参加取り消し", customer_contribution_path(contribution.id), method: :delete %>
-    　　   　<% else %>
-             <%= link_to "募集中", customer_contributions_path(contribution_id:contribution.id), method: :post %>
-    　    　<% end %>
-    　    <% else %>
-    　    　　募集満員
-    　    <% end %>
-　    <% end %>
-
-　    <%= link_to "募集詳細", contribution_path(contribution.id), class: "btn-sm btn-primary" %>
-
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-3">
+      <h5 class="my-4 text-center" style="background-color: #f0f0f0;">募集一覧</h5>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-5"></div>
+  </div>
+  <% @contributions.each do |contribution| %>
+  <div class="col-9 mb-5">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col" style="width: 30%">募集ゲーム</th>
+        <th scope="col" style="width: 70%"><%= contribution.genre.name %></th>
+      </tr>
+      <tr>
+        <th scope="col" style="width: 30%">募集人数</th>
+        <th scope="col" style="width: 70%"><%= contribution.recruitment_numbers %></th>
+      </tr>
+      <tr>
+        <th scope="col" style="width: 30%">募集内容</th>
+        <th scope="col" style="width: 70%"><%= contribution.content %></th>
+      </tr>
+      <tr>
+        <th scope="col" style="width: 30%">参加状況</th>
+        <th scope="col" style="width: 70%">
+          <% if current_customer.is_guest? == false %>
+            <% if contribution.customer.id != current_customer.id %>
+           　  <% if contribution.remaking_numbers != 0  %>
+                <% if contribution.customers.include?(current_customer) %>
+               　  <%= link_to "参加取り消し", customer_contribution_path(contribution.id), method: :delete %>
+              　<% else %>
+                  <%= link_to "募集中", customer_contributions_path(contribution_id:contribution.id), method: :post %>
+              　<% end %>
+              <% else %>
+              　募集満員
+              <% end %>
+            <% end %>
+          <% end %>
+        </th>
+      </tr>
+      <tr>
+        <th scope="col" style="width: 30%">詳細</th>
+        <th scope="col" style="width: 70%">
+          <% if current_customer.is_guest? == false %>
+　          <%= link_to "募集詳細", contribution_path(contribution.id), class: "btn-sm btn-primary" %>
+　        <% end %>
+        </th>
+      </tr>
+    </thead>
+  </table>
+  </div>
+  <% end %>

@@ -31,7 +31,9 @@
               <%= link_to "マイページ", my_page_path, class: "nav-link text-light" %>
             </li>
             <li>
+            <% if current_customer.is_guest? == false %>
               <%= link_to "募集", new_contribution_path, class: "nav-link text-light" %>
+            <% end %>
             </li>
             <li>
               <%= link_to "募集一覧", contributions_path, class: "nav-link text-light" %>
