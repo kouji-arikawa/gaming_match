@@ -14,6 +14,9 @@ class Public::ContributionsController < ApplicationController
 
   def index
     @contributions = Contribution.all
+    if params[:contribution][:genre_id].present? #contributionがあれば（blank　なければ）
+      @contributions = Contribution.where(genre_id: params[:contribution][:genre_id])
+    end
   end
 
   def show
