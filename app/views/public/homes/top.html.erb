@@ -1,2 +1,15 @@
-トップページ
-<%= link_to 'ゲストログイン （閲覧用）', customer_guest_sign_in_path, method: :post %>
+<div class="container"></div>
+  <div class="gaming_match_top">
+    <p>
+      ようこそ、ゲーミングマッチへ！<br>
+      このサイトでは、ゲームを通してフレンドを募集するアプリです。<br>
+      このユーザーでない方も募集の閲覧はできますが、<br>
+      参加するにはユーザー登録が必要です。
+    </p>
+  </div>
+  <div class="row">
+    <div class="col-4-guest">
+      <%= link_to '＞ゲストログイン （閲覧用）', customer_guest_sign_in_path, method: :post %>
+    </div>
+  </div>
+</div>

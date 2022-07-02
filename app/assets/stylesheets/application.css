@@ -14,3 +14,17 @@
  *= require_self
  */
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #6c6b6b;
+}
+
+.gaming_match_top {
+  margin :100px 0px 100px 300px;
+}
+
+.col-4-guest {
+  margin-left: 300px;
+}
