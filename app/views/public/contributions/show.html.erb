@@ -1,31 +1,59 @@
-詳細ページ
-
-<p>募集ジャンル　　　<%= @contribution.genre.name %></p>
-
-<p>募集主　　　　　　<%= @contribution.customer.nickname %></p>
-
-<p>募集人数　　　　　<%= @contribution.recruitment_numbers %></p>
-
-<p>募集内容　　　　　<%= @contribution.content %></p>
-
-<p>
-  参加者　　　　　　<% @customer_contributions.each do |customer_contribution| %>
-    <% if current_customer == @contribution.customer %>
-      <% if customer_contribution.status == "approval" %>
-        <%= customer_contribution.customer.discode %>
+<div class="container">
+  <div class="row">
+    <div class="col-3">
+      <h5 class="my-4 text-center" style="background-color: #f0f0f0;">募集詳細</h5>
+    </div>
+  </div>
+  <div class="col-9">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col" style="width: 30%">募集ジャンル</th>
+          <th scope="col" style="width: 70%"><%= @contribution.genre.name %></th>
+        </tr>
+        <tr>
+          <th scope="col" style="width: 30%">募集主</th>
+          <th scope="col" style="width: 70%"><%= @contribution.customer.nickname %></th>
+        </tr>
+        <tr>
+          <th scope="col" style="width: 30%">募集人数</th>
+          <th scope="col" style="width: 70%"><%= @contribution.recruitment_numbers %></th>
+        </tr>
+        <tr>
+          <th scope="col" style="width: 30%">募集内容</th>
+          <th scope="col" style="width: 70%"><%= @contribution.content %></th>
+        </tr>
+        <tr>
+          <th scope="col" style="width: 30%">参加者</th>
+          <% @customer_contributions.each do |customer_contribution| %>
+          <th scope="col" style="width: 70%">
+              <% if current_customer == @contribution.customer %>
+                <% if customer_contribution.status == "approval" %>
+                  <%= customer_contribution.customer.discode %>
+                <% end %>
+                <% if customer_contribution.status == "request" %>
+                  <%= customer_contribution.customer.nickname %>
+                  <%= link_to "承諾", change_status_customer_contribution_path(customer_contribution.id, params: { status: "approval"} ), method: :post %>
+                  <%= link_to "拒否", change_status_customer_contribution_path(customer_contribution.id, params: { status: "rejection"} ), method: :post %>
+                <% end %>
+              <% else %>
+                <%= customer_contribution.customer.nickname %>
+              <% end %>
+          </th>
+          <% end %>
+        </tr>
+      </thead>
+    </table>
+  </div>
+    <div class="col-3"></div>
+    <div class="col-2">
+      <%= link_to "一覧に戻る", contributions_path, class: "btn btn-primary" %>
+    </div>
+    <div class="col-1"></div>
+    <div class="col-2 mt-3">
+      <% if current_customer == @contribution.customer %>
+        <%= link_to "編集する", edit_contribution_path(@contribution.id), class: "btn btn-primary" %>
       <% end %>
-
-      <% if customer_contribution.status == "request" %>
-      　<%= customer_contribution.customer.nickname %>
-        <%= link_to "承諾", change_status_customer_contribution_path(customer_contribution.id, params: { status: "approval"} ), method: :post %>
-        <%= link_to "拒否", change_status_customer_contribution_path(customer_contribution.id, params: { status: "rejection"} ), method: :post %>
-      <% end %>
-    <% else %>
-      <%= customer_contribution.customer.nickname %>
-    <% end %>
-    <% end %>
-</p>
-<%= link_to "一覧に戻る", contributions_path, class: "btn btn-primary" %>
-<% if current_customer == @contribution.customer %>
-  <%= link_to "編集する", edit_contribution_path(@contribution.id) %>
-<% end %>
+    </div>
+  </div>
+</div>

@@ -13,9 +13,13 @@ class Public::ContributionsController < ApplicationController
   end
 
   def index
-    @contributions = Contribution.all
-    if params[:contribution][:genre_id].present? #contributionがあれば（blank　なければ）
+    #byebug
+    #p params
+    #params =  {"contribution"=>{"genre_id"=>"2"}, "commit"=>"選択"}
+    if  params[:contribution].present? && params[:contribution][:genre_id].present? #contributionがあれば（blank　なければ）
       @contributions = Contribution.where(genre_id: params[:contribution][:genre_id])
+    else
+      @contributions = Contribution.all
     end
   end
 

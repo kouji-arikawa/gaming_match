@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="col-10">
+      <p class="text-left mt-5">ユーザーの一覧</p>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col" style="width: 15%">会員ID</th>
+            <th scope="col" style="width: 25%">氏名</th>
+            <th scope="col" style="width: 35%">Discord ID</th>
+            <th scope="col" style="width: 25%">メールアドレス</th>
+          </tr>
+        </thead>
+        <% @customers.each do |customer| %>
+        <tbody>
+          <tr>
+            <td><%= customer.id %></td>
+            <td>
+              <%= link_to admin_customer_path(customer.id) do %>
+                <%= customer.first_name %><%= customer.last_name %>
+              <% end %>
+            </td>
+            <td><%= customer.discode %></td>
+            <td><%= customer.email %></td>
+          </tr>
+        </tbody>
+        <% end %>
+      </table>
+    </div>
+    <div class="col-1"></div>
+  </div>
+</div>
